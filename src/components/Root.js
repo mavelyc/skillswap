@@ -6,10 +6,11 @@ import {
   Link
 } from "react-router-dom";
 import '../App.css';
-import User from './User';
-import Register from './Register'
+import Register from './Register';
 import firebase from '../firebase';
-import { Button } 
+import MainMenu from './MainMenu';
+import Login from './Login';
+import Home from './Home';
 
 class Root extends React.Component {
     constructor() {
@@ -24,37 +25,23 @@ class Root extends React.Component {
         };
     }
 
-    signIn = () => {
-        let provider = new firebase.auth.GoogleAuthProvider()
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            // The signed-in user info.
-            this.setState({
-                token: result.credential.accessToken,
-                user: result.user,
-            });
-            console.log(this.state)
-        }).catch(function(error) {
-        // Handle Errors here.
-            this.setState({
-                erroCode: error.code,
-                errorrMessage: error.message,
-                email:  error.email,
-                credential: error.credential,
-            });
-            console.log(this.state)
-        });
-    }
-
     register = () => <Register />
 
     render() {
         // react router component here to move to home page if user already initialized
         // else go to page with button for either sign in or register
         return (
-            <Router>
-
-            </Router>
+            <div>
+                <h1>Welcome to SkillSwap</h1>
+                <Router>
+                    <MainMenu  />
+                    <div>
+                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/register" component={Register} />
+                        <Route exact path="/" component={Home} />
+                    </div>
+                </Router>
+            </div>
         )
     }
 } 
