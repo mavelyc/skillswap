@@ -5,7 +5,7 @@ import {
 import '../App.css';
 import {Container, Row, Col, Image, Card, Button, Jumbotron, ListGroup} from 'react-bootstrap';
 import pic from '../images/cmav.jpg'
-
+import firebase from '../firebase';
 
 class Profile extends React.Component {
     
@@ -15,6 +15,31 @@ class Profile extends React.Component {
   }
   
   render() {
+    let current_user = firebase.auth().currentUser;
+    console.log(current_user);
+    let email = current_user.email;
+    console.log(email)
+    let userData = firebase.firestore().collection('users').doc(email);
+    let profile = userData.get().then(function(doc) {
+      if (doc.exists){
+        console.log('exists', doc)
+      } else{
+        console.log('user not found')
+      }
+    }).catch(function(error){
+      console.log('fetch error', error)
+    })
+    // .get().then(function(querySnapshot) {
+    //     querySnapshot.forEach(function(doc) {
+    //         console.log('doc', doc.id)
+    //         console.log('data', doc.data())
+    //         return doc.data();
+    //     });
+    // });
+    console.log(profile)
+    // let bio = current_user.bio;
+    // let skills = current_user.skills;
+    // console.log(name)
     return(
       <Container>
           <Row className="text-center">

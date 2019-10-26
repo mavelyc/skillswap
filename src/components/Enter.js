@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     withRouter,
+    Link,
   } from "react-router-dom";
 import firebase from '../firebase';
 import settings from '../settings.png';
@@ -23,11 +24,11 @@ const Enter = ({history}) => {
                 alt="settings"
             />
 
-            <img src={profile} 
+            <Link to="/profile"><img src={profile} 
                 height="50" 
                 className="Profile" 
                 alt="profile"
-            />
+            /></Link>
 
             <input
                 type="text"
@@ -36,6 +37,7 @@ const Enter = ({history}) => {
                 className="align-bottom"
             />
 
+            {/* map from database query to get matched users */}
             <Table striped bordered variant="dark" float="center">
                 <thead>
                     <tr>
