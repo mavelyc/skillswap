@@ -48,6 +48,7 @@ class Login extends React.Component {
     render() {
         // react router component here to move to home page if user already initialized
         // else go to page with button for either sign in or register
-        return <button type="button" onClick={this.logIn}>Log In</button>
+        
+        return <button type="button" class="btn btn-outline-primary" onClick={this.logIn}>Log In</button>
     }
 } export default withRouter(Login);
