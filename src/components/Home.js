@@ -8,7 +8,6 @@ import {
 const Home = () => {
     return(
     <div>
-      Home
       <h1>Welcome to SkillSwap</h1>
         <Login />
         <Link to="/register">
