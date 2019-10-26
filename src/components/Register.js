@@ -1,7 +1,6 @@
 import React from 'react';
-import db from '../firebase.js';
 import {Form, Button} from 'react-bootstrap';
-import firebase from '../firebase'
+import firebase from '../firebase.js'
 
 class Register extends React.Component {
     constructor() {
@@ -12,6 +11,11 @@ class Register extends React.Component {
             lastname: '',
             password: ''
         };
+        this.changeEmail = this.changeEmail.bind(this);
+        this.changeFirstName = this.changeFirstName.bind(this);
+        this.changeLastName = this.changeLastName.bind(this);
+        this.changePassword = this.changePassword.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     changeFirstName = (e) => {
@@ -39,7 +43,16 @@ class Register extends React.Component {
     }
 
     handleSubmit = () => {
-        
+        console.log(this.state.email);
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+            console.log("Did not work")
+        });
+
+        firebase.firestore().collection('users').doc(this.state.email).set({
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            email: this.state.email
+        }).then(() => console.log("Written successfully")).catch(e => console.log(e)); 
     }
 
     
