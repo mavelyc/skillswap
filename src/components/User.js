@@ -17,11 +17,18 @@ class User extends React.Component {
     }
 
     addUser = e => {
+        // prevents page reload before submitting the form
         e.preventDefault();
+        // writes to db with system date objects
+        db.settings({
+            timestampsInSnapshots: true
+        });
+        // adds new user to the db
         const userRef = db.collection('users').add({
             fullname: this.state.fullname,
             email: this.state.email
         }); 
+        //resets current state of the form
         this.setState({
             fullname: '',
             email: '',
@@ -30,7 +37,9 @@ class User extends React.Component {
 
     render() {
         return (
+            // form to create new user
             <form onSubmit={this.addUser}>
+                {/* name input box */}
                 <input
                     type="text"
                     name="fullname"
@@ -38,6 +47,7 @@ class User extends React.Component {
                     onChange={this.updateInput}
                     value={this.state.fullname}
                 />
+                {/* email input box */}
                 <input
                     type="email"
                     name="email"
