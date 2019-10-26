@@ -1,4 +1,5 @@
 import React from 'react';
+import db from '../firebase.js';
 
 class User extends React.Component {
     constructor() {
@@ -11,9 +12,21 @@ class User extends React.Component {
 
     updateInput = e => {
         this.setState({
-          [e.target.name]: e.target.value
+            [e.target.name]: e.target.value
         });
-      }
+    }
+
+    addUser = e => {
+        e.preventDefault();
+        const userRef = db.collection('users').add({
+            fullname: this.state.fullname,
+            email: this.state.email
+        }); 
+        this.setState({
+            fullname: '',
+            email: '',
+        });
+    };
 
     render() {
         return (
