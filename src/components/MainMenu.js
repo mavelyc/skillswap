@@ -6,19 +6,58 @@ import {
   Link
 } from "react-router-dom";
 import '../App.css';
-import logo from '../logo.svg';
+import settings from '../settings.png';
+import profile from '../profile.png';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table'
+import Navbar from 'react-bootstrap/Navbar';
 
 const MainMenu = () => {
+
     return(
       <div>
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Welcome to SkillSwap</h1>
-        <Link to="/login">
-          <button>Login</button>
-        </Link>
-        <Link to="/register">
-          <button>Register</button>
-        </Link>
+              <img src={settings} 
+              height="50" 
+              className="Settings" 
+              alt="settings"
+              className="align-top float-left"/>
+
+              <img src={profile} 
+              height="50" 
+              className="Profile" 
+              alt="profile"
+              className="align-top float-left"/>
+
+            <input
+              type="text"
+              name="learning"
+              placeholder="Search for some skills"
+              className="align-bottom"/>
+
+        <Table striped bordered variant="dark" float="center">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Skills Offering</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Jacob</td>
+                <td>Guitar Lessons</td>
+              </tr>
+              <tr>
+                <td>Thomas</td>
+                <td>Python tutorial</td>
+              </tr>
+              <tr>
+                <td>Pooja</td>
+                <td>Broom sweeping</td>
+              </tr>
+            </tbody>
+          </Table>
       </div>
     )
 }
