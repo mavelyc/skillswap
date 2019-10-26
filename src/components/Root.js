@@ -30,10 +30,10 @@ class Root extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path='/enter' component={Enter} />
-                    <Route path='/' component={Home} />
+                    <Route path="/login" render={()=> <Login a={this.state}/>} />} />
+                    <Route path="/register" render={()=> <Register state={this.state}/>} />} />
+                    <Route path="/enter" render={()=> <Enter state={this.state}/>} />} />
+                    <Route path="/" render={()=> <Home state={this.state}/>} />} />
                 </Switch>
             </Router>
         )
