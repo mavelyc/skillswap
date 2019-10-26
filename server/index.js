@@ -20,6 +20,16 @@ let setAda = docRef.set({
   born: 1815
 });
 
+db.collection('users').get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      console.log(doc.id, '=>', doc.data().first);
+    });
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
+  });
+  
 
 
 
