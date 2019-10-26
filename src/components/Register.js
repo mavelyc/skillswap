@@ -1,5 +1,10 @@
 import React from 'react';
 import {Form, Button} from 'react-bootstrap';
+import {
+    BrowserRouter as Router,
+    Route,
+    Redirect,
+  } from "react-router-dom";
 import firebase from '../firebase.js';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
