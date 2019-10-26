@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+  withRouter,
 } from "react-router-dom";
 import '../App.css';
 import {Container, Row, Col, Image, Card, Button, Jumbotron, ListGroup} from 'react-bootstrap';
@@ -12,13 +9,12 @@ import pic from '../images/cmav.jpg'
 
 class Profile extends React.Component {
     
-    constructor() {
-        super();
-        this.state={}
-    }
-    
-    
-    render() {
+  constructor() {
+      super();
+      this.state={}
+  }
+  
+  render() {
     return(
       <Container>
           <Row className="text-center">
@@ -42,11 +38,11 @@ class Profile extends React.Component {
             <ListGroup.Item>Morbi leo risus</ListGroup.Item>
             <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
             <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-           </ListGroup>
-           </Container>
+            </ListGroup>
+            </Container>
       </Container>
     )
-    }
+  }
 }
 
-export default Profile;
+export default withRouter(Profile);

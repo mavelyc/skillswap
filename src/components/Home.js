@@ -9,17 +9,12 @@ import {
   Row,
   Col,
   Image,
-  Nav,
 } from "react-bootstrap"
 
 const Home = () => {
     return(
+    <div>
     <Container>
-      <Row>
-        <Col>
-       Home
-      </Col>
-      </Row>
       <Row>
         <Col>
         <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQkZSYzoRTfsPFfhWz2m-5HG8dxIi6KDqg3qMpBXTN8yc2VcGg&s" fluid />
@@ -45,6 +40,7 @@ const Home = () => {
         <Col></Col>
       </Row>
     </Container>
+    </div>
     )
 }
 
