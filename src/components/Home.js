@@ -5,6 +5,7 @@ import {
     Route,
     Redirect,
     withRouter,
+    Link,
   } from "react-router-dom";
 
 const Home = () => {
@@ -13,9 +14,9 @@ const Home = () => {
       Home
       <h1>Welcome to SkillSwap</h1>
         <Login />
-        {/* <Link to="/register">
+        <Link to="/register">
             <button>Register</button>
-        </Link> */}
+        </Link>
     </div>
   )
 }

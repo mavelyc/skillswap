@@ -53,16 +53,18 @@ class Register extends React.Component {
     }
 
     handleSubmit = () => {
-        console.log(this.state.email);
+        const {history} = this.props;
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
-            console.log("Did not work")
+            history.push('/register')
         });
 
         firebase.firestore().collection('users').doc(this.state.email).set({
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             email: this.state.email
-        }).then(() => console.log("Written successfully")).catch(e => console.log(e)); 
+        }).then(() => {
+            history.push('/enter')
+        }).catch(e => console.log(e)); 
     }
 
     render() {
