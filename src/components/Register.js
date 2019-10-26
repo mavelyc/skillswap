@@ -1,6 +1,10 @@
 import React from 'react';
 import {Form, Button} from 'react-bootstrap';
-import firebase from '../firebase.js'
+import firebase from '../firebase.js';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import logo from '../logo.svg'
 
 class Register extends React.Component {
     constructor() {
@@ -59,28 +63,37 @@ class Register extends React.Component {
 
     render() {
         return (
-            // form to create new user
-            <Form>
-                <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.firstname} onChange={this.changeFirstName}>
-                <Form.Label>First Name</Form.Label>
-                <Form.Control type="firstname" placeholder="John" />
-            </Form.Group>
-            <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.lastname} onChange={this.changeLastName}>
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control type="firstname" placeholder="Doe" />
-            </Form.Group>
-            <Form.Group size="lg" controlId="formBasicPassword" value={this.state.email} onChange={this.changeEmail}>
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="name@example.com" />
-            </Form.Group>
-            <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.password} onChange={this.changePassword}>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="" />
-            </Form.Group>
-            <Button variant="primary" type="button" onClick={this.handleSubmit}>
-                Submit
-            </Button>
-            </Form>
+            <Container>
+                <Row>
+                    <Col>
+                        <img src={logo} className="App-logo" alt="logo" />
+                    </Col>
+                    <Col>
+                        {/*// form to create new user*/}
+                        <Form>
+                            <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.firstname} onChange={this.changeFirstName}>
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control type="firstname" placeholder="John" />
+                        </Form.Group>
+                        <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.lastname} onChange={this.changeLastName}>
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control type="firstname" placeholder="Doe" />
+                        </Form.Group>
+                        <Form.Group size="lg" controlId="formBasicPassword" value={this.state.email} onChange={this.changeEmail}>
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="name@example.com" />
+                        </Form.Group>
+                        <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.password} onChange={this.changePassword}>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="" />
+                        </Form.Group>
+                        <Button variant="primary" type="button" onClick={this.handleSubmit}>
+                            Submit
+                        </Button>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
             );
         }
     }
