@@ -8,56 +8,63 @@ class Register extends React.Component {
         super();
         this.state = {
             email: '',
-            fullname: '',
+            firstname: '',
+            lastname: '',
+            password: ''
         };
     }
 
-    updateInput = e => {
+    changeFirstName = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
-        });
+            firstname: e.target.value
+        })
     }
 
-    addUser = e => {
-        // prevents page reload before submitting the form
-        e.preventDefault();
-        // writes to db with system date objects
-        db.settings({
-            timestampsInSnapshots: true
-        });
-        // adds new user to the db
-        const userRef = db.collection('users').add({
-            fullname: this.state.fullname,
-            email: this.state.email
-        }); 
-        //resets current state of the form
+    changeLastName = (e) => {
         this.setState({
-            fullname: '',
-            email: '',
-        });
-    };
+            lastname: e.target.value
+        })
+    }
+
+    changePassword = (e) => {
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    changeEmail = (e) => {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    handleSubmit = () => {
+        
+    }
+
+    
 
     render() {
         return (
             // form to create new user
             <Form>
-                <Form.Group size="lg" controlId="exampleForm.ControlInput1">
+                <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.firstname} onChange={this.changeFirstName}>
                 <Form.Label>First Name</Form.Label>
                 <Form.Control type="firstname" placeholder="John" />
             </Form.Group>
-            <Form.Group size="lg" controlId="exampleForm.ControlInput1">
+            <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.lastname} onChange={this.changeLastName}>
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control type="firstname" placeholder="Doe" />
             </Form.Group>
-            <Form.Group size="lg" controlId="formBasicPassword">
+            <Form.Group size="lg" controlId="formBasicPassword" value={this.state.email} onChange={this.changeEmail}>
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="name@example.com" />
             </Form.Group>
-            <Form.Group size="lg" controlId="exampleForm.ControlInput1">
+            <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.password} onChange={this.changePassword}>
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="button" onClick={this.handleSubmit}>
                 Submit
             </Button>
             </Form>
