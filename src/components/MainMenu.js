@@ -9,6 +9,7 @@ import {
 const MainMenu = () => {
     return(
       <div>
+        <h1>Welcome to SkillSwap</h1>
         <Link to="/login">
           <button>Login</button>
         </Link>

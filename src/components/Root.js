@@ -32,13 +32,11 @@ class Root extends React.Component {
         // else go to page with button for either sign in or register
         return (
             <div>
-                <h1>Welcome to SkillSwap</h1>
                 <Router>
-                    <MainMenu  />
                     <div>
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/register" component={Register} />
-                        <Route exact path="/" component={Home} />
+                        <Route exact path="/" component={MainMenu} />
                     </div>
                 </Router>
             </div>
