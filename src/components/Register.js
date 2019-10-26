@@ -1,9 +1,6 @@
 import React from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {
-    BrowserRouter as Router,
-    Route,
-    Redirect,
     withRouter,
   } from "react-router-dom";
 import firebase from '../firebase.js';

@@ -1,17 +1,9 @@
-import React from 'react';
+import React from 'react'
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
   withRouter,
 } from "react-router-dom";
 import '../App.css';
-import User from './User';
-import Register from './Register'
 import firebase from '../firebase';
-import Private from './Root';
 
 class Login extends React.Component {
     constructor() {
@@ -56,6 +48,5 @@ class Login extends React.Component {
         // else go to page with button for either sign in or register
         
         return <button type="button" onClick={this.logIn}>Log In</button>
-        {/* <Route path='/private' component={Private} /> */}
     }
 } export default withRouter(Login);

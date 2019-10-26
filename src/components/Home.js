@@ -1,9 +1,6 @@
 import React from 'react';
 import Login from './Login';
 import {
-    BrowserRouter as Router,
-    Route,
-    Redirect,
     withRouter,
     Link,
   } from "react-router-dom";
