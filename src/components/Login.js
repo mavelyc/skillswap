@@ -26,10 +26,12 @@ class Login extends React.Component {
         firebase.auth().signInWithPopup(provider).then(function(result) {
             // This gives you a Google Access Token. You can use it to access the Google API.
             // The signed-in user info.
+            let user = result.user;
             self.setState({
                 token: result.credential.accessToken,
-                user: result.user,
+                user: user,
                 isLoggedIn: true,
+                email: user.email,
             });
             history.push('/enter')
         }).catch(function(error) {
@@ -46,7 +48,6 @@ class Login extends React.Component {
     render() {
         // react router component here to move to home page if user already initialized
         // else go to page with button for either sign in or register
-        
         return <button type="button" onClick={this.logIn}>Log In</button>
     }
 } export default withRouter(Login);
