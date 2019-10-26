@@ -4,6 +4,7 @@ import {
     BrowserRouter as Router,
     Route,
     Redirect,
+    withRouter,
   } from "react-router-dom";
 import firebase from '../firebase.js';
 import Container from 'react-bootstrap/Container';
@@ -101,4 +102,4 @@ class Register extends React.Component {
         }
     }
     
-export default Register;
+export default withRouter(Register);

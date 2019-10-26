@@ -3,7 +3,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link,
   Redirect,
+  withRouter,
 } from "react-router-dom";
 import '../App.css';
 import User from './User';
@@ -37,7 +39,7 @@ class Login extends React.Component {
                 user: result.user,
                 isLoggedIn: true,
             });
-            history.push('/register')
+            history.push('/enter')
         }).catch(function(error) {
         // Handle Errors here.
             self.setState({
@@ -52,6 +54,8 @@ class Login extends React.Component {
     render() {
         // react router component here to move to home page if user already initialized
         // else go to page with button for either sign in or register
+        
         return <button type="button" onClick={this.logIn}>Log In</button>
+        {/* <Route path='/private' component={Private} /> */}
     }
-} export default Login;
+} export default withRouter(Login);
