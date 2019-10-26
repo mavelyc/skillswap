@@ -1,5 +1,6 @@
 import React from 'react';
 import db from '../firebase.js';
+import {Form, Button} from 'react-bootstrap';
 
 class Register extends React.Component {
     constructor() {
@@ -38,25 +39,23 @@ class Register extends React.Component {
     render() {
         return (
             // form to create new user
-            <form onSubmit={this.addUser}>
-                {/* name input box */}
-                <input
-                    type="text"
-                    name="fullname"
-                    placeholder="Full name"
-                    onChange={this.updateInput}
-                    value={this.state.fullname}
-                />
-                {/* email input box */}
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={this.updateInput}
-                    value={this.state.email}
-                />
-                <button type="submit">Submit</button>
-            </form>
+            <Form>
+                <Form.Group size="lg" controlId="exampleForm.ControlInput1">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control type="name" placeholder="John Doe" />
+            </Form.Group>
+            <Form.Group size="lg" controlId="formBasicPassword">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="name@example.com" />
+            </Form.Group>
+            <Form.Group size="lg" controlId="exampleForm.ControlInput1">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+            </Form>
             );
         }
     }
