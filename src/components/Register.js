@@ -1,7 +1,7 @@
 import React from 'react';
-import firebase from '../firebase.js';
+import db from '../firebase.js';
 
-class User extends React.Component {
+class Register extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -20,11 +20,11 @@ class User extends React.Component {
         // prevents page reload before submitting the form
         e.preventDefault();
         // writes to db with system date objects
-        firebase.firestore().settings({
+        db.settings({
             timestampsInSnapshots: true
         });
         // adds new user to the db
-        const userRef = firebase.firestore().collection('users').add({
+        const userRef = db.collection('users').add({
             fullname: this.state.fullname,
             email: this.state.email
         }); 
@@ -60,4 +60,4 @@ class User extends React.Component {
             );
         }
     }
-export default User;
+export default Register;
