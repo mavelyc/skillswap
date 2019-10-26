@@ -55,8 +55,6 @@ class Register extends React.Component {
         }).then(() => console.log("Written successfully")).catch(e => console.log(e)); 
     }
 
-    
-
     render() {
         return (
             // form to create new user
