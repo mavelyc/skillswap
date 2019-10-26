@@ -4,27 +4,49 @@ import {
     withRouter,
     Link,
   } from "react-router-dom";
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+  Nav,
+} from "react-bootstrap"
 
 const Home = () => {
     return(
-    <div>
-      Home
+    <Container>
+      <Row>
+        <Col>
+       Home
+      </Col>
+      </Row>
+      <Row>
+        <Col>
+        <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQkZSYzoRTfsPFfhWz2m-5HG8dxIi6KDqg3qMpBXTN8yc2VcGg&s" fluid />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
       <h1>Welcome to SkillSwap</h1>
-      <div class="container">
-       <div class="row">
-       <div class="col-sm">
-          <Link to="/register">
-        <button type="button" class="btn btn-outline-primary">
-          Register
-        </button>
-        </Link>
-        </div>
-        <div class="col-sm"></div>
+      </Col>
+      </Row>
+      <Row>
+        <Col></Col>
+        <Col>
+            <Link to="/register">
+            <button type="button" class="btn btn-outline-success">
+              Register
+            </button>
+            </Link>
+        </Col>
+        <Col>
           <Login />
-        </div>
-        </div>
-    </div>
-  )
+        </Col>
+        <Col></Col>
+      </Row>
+    </Container>
+    )
 }
+
 
 export default withRouter(Home);
