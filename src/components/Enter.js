@@ -17,47 +17,61 @@ const Enter = ({history}) => {
 
     return(
         <div>
-            <img src={settings} 
-                height="50" 
-                className="Settings" 
-                alt="settings"
-            />
+            <div className="float-left">
+                <img src={settings} 
+                    height="50" 
+                    className="Settings" 
+                    alt="settings"
+                />
+            </div>
 
-            <img src={profile} 
-                height="50" 
-                className="Profile" 
-                alt="profile"
-            />
+            <div className="float-right">
+                <img src={profile} 
+                    height="50" 
+                    className="Profile" 
+                    alt="profile"
+                />
+            </div>
 
-            <input
-                type="text"
-                name="learning"
-                placeholder="Search for some skills"
-                className="align-bottom"
-            />
+            <br/>
+            <br/>
 
-            <Table striped bordered variant="dark" float="center">
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Skills Offering</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>Jacob</td>
-                    <td>Guitar Lessons</td>
-                    </tr>
-                    <tr>
-                    <td>Thomas</td>
-                    <td>Python tutorial</td>
-                    </tr>
-                    <tr>
-                    <td>Pooja</td>
-                    <td>Broom sweeping</td>
-                    </tr>
-                </tbody>
-            </Table>
+            <div>
+                <input
+                    type="text"
+                    name="learning"
+                    placeholder="Search for some skills"
+                />
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <div>
+                <Table striped bordered variant="dark" float="center">
+                    <thead>
+                        <tr>
+                        <th>Name</th>
+                        <th>Skills Offering</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>Jacob</td>
+                        <td>Guitar Lessons</td>
+                        </tr>
+                        <tr>
+                        <td>Thomas</td>
+                        <td>Python tutorial</td>
+                        </tr>
+                        <tr>
+                        <td>Pooja</td>
+                        <td>Broom sweeping</td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </div>
       </div>
     )
 }
