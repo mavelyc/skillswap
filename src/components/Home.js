@@ -43,7 +43,7 @@ class Home extends React.Component {
           <Row>
             <Col xs={3}></Col>
              <Col xs={6}>
-              <Image src = {require  ("./logo.png")}
+              <Image src = {require  ("./logo2.png")}
               fluid />
              </Col>
              <Col xs={3}></Col>
