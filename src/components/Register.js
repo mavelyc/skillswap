@@ -15,7 +15,7 @@ class Register extends React.Component {
         this.state = {
             email: '',
             fullname: '',
-            password: ''
+            password: '',
         };
         this.changeEmail = this.changeEmail.bind(this);
         this.changeFullName = this.changeFullName.bind(this);
@@ -51,7 +51,8 @@ class Register extends React.Component {
             fullname: this.state.fullname,
             email: this.state.email,
             bio: '',
-            skills: ''
+            skills: '',
+            requests: {},
         }).then(() => {
             history.push('/enter')
         }).catch(e => console.log(e)); 

@@ -10,69 +10,105 @@ import {
     Table
 } from 'react-bootstrap'
 
-const Enter = ({history}) => {
-    let current_user = firebase.auth().currentUser;
-    if (!current_user){
-        history.push('/')
+class Enter extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            current_user: null,
+            search:''
+        };
+    };
+
+    componentDidMount () {
+        let current_user = firebase.auth().currentUser;
+        let db = firebase.firestore().collection('users');
+        let users = []
+        let self = this;
+        
+        db.doc(current_user.email).get().then(function(doc) {
+            self.setState({
+                requesters: Object.keys(doc.data().requests),
+            })
+            let emails = Object.keys(doc.data().requests);
+            let skills = []
+            emails.map(email => db.doc(email).get().then(function(doc) {
+                skills.push(doc.data().skills);
+            }).then(res =>{;
+                self.setState({
+                   requesterSkills: skills,
+                })
+            }))
+        })
+
+        this.setState({
+            history: this.props,
+            current_user: current_user,
+        })
     }
 
-    return(
-        <div>
-            <div className="float-left">
-                <img src={settings} 
-                    height="50" 
-                    className="Settings" 
-                    alt="settings"
-                />
-            </div>
+    handleChange = (e) => {
+        this.setState({
+            search: e.target.value
+        })
+        console.log(this.state.search)
+    }
 
-            <Link to={`/profile/${current_user.email}`}><img src={profile} 
-                height="50" 
-                className="Profile" 
-                alt="profile"
-            /></Link>
+    render(){
+        let requesterList = this.state.requesters && this.state.requesterSkills ? this.state.requesters.map((requester,index) => 
+            <tr><td><Link to={`/profile/${requester}`}>{requester}</Link></td><td>{this.state.requesterSkills[index]}</td></tr>
+        ):[]
 
-            <br/>
-            <br/>
-            <br/>
+        let profile_id = this.state.current_user && this.state.current_user.email ? this.state.current_user.email : "";
 
+        return(
             <div>
-                <input
-                    type="text"
-                    name="learning"
-                    placeholder=" Search for some skills"
-                    style={{width: "450px", borderRadius: 10}}
-                />
-            </div>
+                <div className="float-left">
+                    <img src={settings} 
+                        height="50" 
+                        className="Settings" 
+                        alt="settings"
+                    />
+                </div>
 
-            <br/>
+                <Link to={`/profile/${profile_id}`}>
+                    <img src={profile} 
+                        height="50" 
+                        className="Profile" 
+                        alt="profile"
+                    />
+                </Link>
 
-            <div>
-                <Table striped bordered variant="dark" float="center">
-                    <thead>
-                        <tr>
-                        <th>Name</th>
-                        <th>Skills Offering</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>Jacob</td>
-                        <td>Guitar Lessons</td>
-                        </tr>
-                        <tr>
-                        <td>Thomas</td>
-                        <td>Python tutorial</td>
-                        </tr>
-                        <tr>
-                        <td>Pooja</td>
-                        <td>Broom sweeping</td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </div>
-      </div>
-    )
+                <br/>
+                <br/>
+                <br/>
+
+                <div>
+                    <input
+                        type="text"
+                        name="learning"
+                        placeholder=" Search for some skills"
+                        style={{width: "450px", borderRadius: 10}}
+                        onChange = {this.handleChange}
+                        value = {this.state.search}
+                    />
+                </div>
+                <br/>
+                <div>
+                    <Table striped bordered variant="dark" float="center">
+                        <thead>
+                            <tr>
+                            <th>Name</th>
+                            <th>Skills Offering</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {requesterList}
+                        </tbody>
+                    </Table>
+                </div>
+        </div>
+        )
+    }
 }
 
 export default withRouter(Enter);
