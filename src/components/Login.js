@@ -4,6 +4,9 @@ import {
 } from "react-router-dom";
 import '../App.css';
 import firebase from '../firebase';
+import {
+Spinner,
+  } from "react-bootstrap"
 
 class Login extends React.Component {
     constructor() {
@@ -49,6 +52,6 @@ class Login extends React.Component {
         // react router component here to move to home page if user already initialized
         // else go to page with button for either sign in or register
         
-        return <button type="button" class="btn btn-outline-success" onClick={this.logIn}>Log In</button>
+        return <button type="button" class="btn btn-success btn-lg" onClick={this.logIn}>Log In</button>
     }
 } export default withRouter(Login);
