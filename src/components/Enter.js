@@ -82,9 +82,8 @@ class Enter extends React.Component {
     }}
 
     render(){
-        console.log(this.state)
         let requesterList = this.state.requesters && this.state.requesterSkills? this.state.requesters.map((requester,index) => 
-            <tr><td><Link to={`/profile/${requester}`}>{this.state.users[index]}</Link></td><td>{this.state.requesterSkills[index]}</td></tr>
+            <tr><td><Link to={`/profile/${requester}`}>{this.state.users[index]}</Link></td><td>{this.state.requesterSkills[index] && this.state.requesterSkills[index].join(', ')}</td></tr>
         ):[]
 
         if (this.state.search){

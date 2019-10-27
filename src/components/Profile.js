@@ -164,7 +164,7 @@ class Profile extends React.Component {
             <h1>{this.state.fullname}</h1>
             <p>{this.state.bio}</p>
         </Jumbotron>
-          <h2 id="yer">Skills I teach...</h2>
+          <h2 id="yer">Skills that I can teach...</h2>
         <Container>
             {/* button for edit profile  */}
             {/* only show request swap for a profile that is not yours */}

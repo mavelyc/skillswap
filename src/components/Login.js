@@ -47,7 +47,7 @@ class Login extends React.Component {
                     }).catch(err => console.log("ERROR" , err))
                 } 
                 }).catch(function(error){
-                console.log('fetch error', error)
+                    console.log('fetch error', error)
                 }).then(() => {
                 history.push('/enter')
                 }).catch(function(error) { console.log(error)});
