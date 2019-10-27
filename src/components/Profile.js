@@ -152,7 +152,7 @@ class Profile extends React.Component {
                   <strong className="mr-auto">Message from SkillSwap</strong>
                   <small>{this.state.matchTime && moment(this.state.matchTime.toDate()).fromNow()}</small>
                 </Toast.Header>
-                <Toast.Body>Woohoo, you just matched with {this.state.fullname} for the skill {this.state.matchedSkill}!</Toast.Body>
+                <Toast.Body><p>Woohoo, you just matched with {this.state.fullname} for the skill {this.state.matchedSkill}!</p></Toast.Body>
               </Toast>
             </Col>
           </Row>
