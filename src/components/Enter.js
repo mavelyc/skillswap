@@ -31,7 +31,6 @@ class Enter extends React.Component {
             let emails = Object.keys(doc.data().requests);
             let skills = []
             emails.map(email => db.doc(email).get().then(function(doc) {
-
                 skills.push(doc.data().skills);
             }).then(res =>{;
                 self.setState({
@@ -46,15 +45,11 @@ class Enter extends React.Component {
         })
     }
     render(){
-        console.log('this.state');
-        console.log(this.state);
-        let test = this.state.requesters && this.state.requesterSkills ? this.state.requesters.map((requester,index) => 
-            <tr><td>{requester}</td><td>{this.state.requesterSkills[index]}</td></tr>
+        let requesterList = this.state.requesters && this.state.requesterSkills ? this.state.requesters.map((requester,index) => 
+            <tr><td><Link to={`/profile/${requester}`}>{requester}</Link></td><td>{this.state.requesterSkills[index]}</td></tr>
         ):[]
-        console.log("test",test)
-       //  if (!this.state.current_user){
-       //      this.state.history.push('/')
-       //  }
+
+        let profile_id = this.state.current_user && this.state.current_user.email ? this.state.current_user.email : "";
 
         return(
             <div>
@@ -66,11 +61,13 @@ class Enter extends React.Component {
                     />
                 </div>
 
-               {/*  <Link to={`/profile/${this.state.current_user.email}`}><img src={profile} 
-                    height="50" 
-                    className="Profile" 
-                    alt="profile"
-                /></Link */}>
+                <Link to={`/profile/${profile_id}`}>
+                    <img src={profile} 
+                        height="50" 
+                        className="Profile" 
+                        alt="profile"
+                    />
+                </Link>
 
                 <br/>
                 <br/>
@@ -96,15 +93,7 @@ class Enter extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {test}
-                            <tr>
-                            <td>Thomas</td>
-                            <td>Python tutorial</td>
-                            </tr>
-                            <tr>
-                            <td>Pooja</td>
-                            <td>Broom sweeping</td>
-                            </tr>
+                            {requesterList}
                         </tbody>
                     </Table>
                 </div>
