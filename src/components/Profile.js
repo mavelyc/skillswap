@@ -34,7 +34,7 @@ class Profile extends React.Component {
       profileEmail: profileEmail,
     })
 
-    firebase.firestore().collection('users').doc(profileEmail).set(then(function(doc) {
+    firebase.firestore().collection('users').doc(profileEmail).set(function(doc) {
       if (doc.exists){
         let data = doc.data();
         self.setState({
@@ -49,6 +49,7 @@ class Profile extends React.Component {
   }
 
   handleMatchedRequests = () => {
+    let self = this;
     // create match object in current user with profile email
     // create match object in profile email with current email
     let currentUser = firebase.firestore().collection('users').doc(self.state.profileEmail).get();
