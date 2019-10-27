@@ -16,7 +16,8 @@ class Enter extends React.Component {
         this.state = {
             current_user: null,
             search:'',
-            sucSearch:[]
+            sucSearch:[],
+            users: [],
         };
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
@@ -36,9 +37,11 @@ class Enter extends React.Component {
             let skills = []
             emails.map(email => db.doc(email).get().then(function(doc) {
                 skills.push(doc.data().skills);
+                users.push(doc.data().fullname);
             }).then(res =>{;
                 self.setState({
                    requesterSkills: skills,
+                   users: users,
                 })
             }))
         })
@@ -54,7 +57,6 @@ class Enter extends React.Component {
         this.setState({
             search: e.target.value
         })
-        console.log(this.state.search)
     }
 
     submit = e => {
@@ -62,15 +64,17 @@ class Enter extends React.Component {
         if (e.key == "Enter") {
             let usersRef = firebase.firestore().collection('users');
             let tmp = []
+            let users = []
             usersRef.where("skills", "array-contains", self.state.search).get()
             .then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
                     tmp.push(doc.id)
-                    console.log('tmp1',tmp)
+                    users.push(doc.data().fullname)
                 })
             }).then(() => {
                 self.setState({
-                    sucSearch: tmp
+                    sucSearch: tmp,
+                    users: users,
                 })
             }).catch(function(error) {
                 console.log("Error getting documents: ", error);
@@ -78,12 +82,12 @@ class Enter extends React.Component {
     }}
 
     render(){
-        let requesterList = this.state.requesters && this.state.requesterSkills ? this.state.requesters.map((requester,index) => 
-            <tr><td><Link to={`/profile/${requester}`}>{requester}</Link></td><td>{this.state.requesterSkills[index]}</td></tr>
+        let requesterList = this.state.requesters && this.state.requesterSkills? this.state.requesters.map((requester,index) => 
+            <tr><td><Link to={`/profile/${requester}`}>{this.state.users[index]}</Link></td><td>{this.state.requesterSkills[index] && this.state.requesterSkills[index].join(', ')}</td></tr>
         ):[]
 
         if (this.state.search){
-            requesterList = this.state.sucSearch.map((requester,index) => <tr><td><Link to={`/profile/${requester}`}>{requester}</Link></td><td>{this.state.search}</td></tr>)
+            requesterList = this.state.sucSearch.map((requester,index) => <tr><td><Link to={`/profile/${requester}`}>{this.state.users[index]}</Link></td><td>{this.state.search}</td></tr>)
         };
 
         let profile_id = this.state.current_user && this.state.current_user.email ? this.state.current_user.email : "";

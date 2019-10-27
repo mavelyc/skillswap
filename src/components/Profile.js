@@ -149,7 +149,7 @@ class Profile extends React.Component {
             <Col xs={6}>
               <Toast show={this.state.showMatched} onClose={this.toggleShowMatched}>
                 <Toast.Header>
-                  <strong className="mr-auto">Message from SkillSwap</strong>
+                  <p><strong className="mr-auto">Message from SkillSwap</strong></p>
                   <small>{this.state.matchTime && moment(this.state.matchTime.toDate()).fromNow()}</small>
                 </Toast.Header>
                 <Toast.Body><p>Woohoo, you just matched with {this.state.fullname} for the skill {this.state.matchedSkill}!</p></Toast.Body>
@@ -164,7 +164,7 @@ class Profile extends React.Component {
             <h1>{this.state.fullname}</h1>
             <p>{this.state.bio}</p>
         </Jumbotron>
-          <h2 id="yer">Skills I teach...</h2>
+          <h2 id="yer">Skills that I can teach...</h2>
         <Container>
             {/* button for edit profile  */}
             {/* only show request swap for a profile that is not yours */}
