@@ -17,6 +17,7 @@ class Enter extends React.Component {
             current_user: null,
             search:''
         };
+        this.handleChange = this.handleChange.bind(this);
     };
 
     componentDidMount () {
@@ -46,11 +47,22 @@ class Enter extends React.Component {
         })
     }
 
+
     handleChange = (e) => {
         this.setState({
             search: e.target.value
         })
+        let usersRef = firebase.firestore().collection('users');
         console.log(this.state.search)
+        usersRef.where("skills", "array-contains", this.state.search).get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+            });
+        }).catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
     }
 
     render(){

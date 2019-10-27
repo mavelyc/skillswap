@@ -51,7 +51,7 @@ class Register extends React.Component {
             fullname: this.state.fullname,
             email: this.state.email,
             bio: '',
-            skills: '',
+            skills: [],
             requests: {},
         }).then(() => {
             history.push('/enter')
