@@ -15,6 +15,7 @@ class Enter extends React.Component {
         super();
         this.state = {
             current_user: null,
+            search:''
         };
     };
 
@@ -44,6 +45,14 @@ class Enter extends React.Component {
             current_user: current_user,
         })
     }
+
+    handleChange = (e) => {
+        this.setState({
+            search: e.target.value
+        })
+        console.log(this.state.search)
+    }
+
     render(){
         let requesterList = this.state.requesters && this.state.requesterSkills ? this.state.requesters.map((requester,index) => 
             <tr><td><Link to={`/profile/${requester}`}>{requester}</Link></td><td>{this.state.requesterSkills[index]}</td></tr>
@@ -79,6 +88,8 @@ class Enter extends React.Component {
                         name="learning"
                         placeholder=" Search for some skills"
                         style={{width: "450px", borderRadius: 10}}
+                        onChange = {this.handleChange}
+                        value = {this.state.search}
                     />
                 </div>
                 <br/>
