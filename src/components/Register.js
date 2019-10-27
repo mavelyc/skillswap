@@ -7,7 +7,7 @@ import firebase from '../firebase.js';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import logo from '../logo.svg'
+import logo from './logo2.png'
 import {
     Image,
   } from "react-bootstrap"

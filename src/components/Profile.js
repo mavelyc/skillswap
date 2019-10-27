@@ -3,9 +3,20 @@ import {
   withRouter,
 } from "react-router-dom";
 import './Profile.css';
-import {Container, Row, Col, Image, Card, Button, Jumbotron, ListGroup} from 'react-bootstrap';
+import {
+  Container, 
+  Row, 
+  Col, 
+  Image, 
+  Card, 
+  Button, 
+  Jumbotron, 
+  ListGroup,
+  Toast,
+} from 'react-bootstrap';
 import pic from '../images/cmav.jpg'
 import firebase from '../firebase';
+import moment from 'moment';
 
 class Profile extends React.Component {
     
@@ -18,7 +29,15 @@ class Profile extends React.Component {
           isSelfProfile: false,
           profileEmail: '',
           current_user: null,
+          showMatched: false,
+          matchTime: null,
       }
+  }
+
+  toggleShowMatched = () => {
+    this.setState({
+      showMatched: !this.state.showMatched,
+    })
   }
 
   componentDidMount() {
@@ -38,7 +57,7 @@ class Profile extends React.Component {
       if (doc.exists){
         let data = doc.data();
         self.setState({
-            name: data.name,
+            fullname: data.fullname,
             bio: data.bio,
             skills: data.skills,
         })
@@ -52,6 +71,9 @@ class Profile extends React.Component {
     let self = this;
     let profileEmail = self.state.profileEmail;
     let matchTime = firebase.firestore.Timestamp.fromDate(new Date());
+    self.setState({
+      matchTime: matchTime,
+    })
 
     let updateRequesterParams = {};
     updateRequesterParams[`${self.state.current_user.email}`] = matchTime;
@@ -74,7 +96,7 @@ class Profile extends React.Component {
           matches: updateUserParams,
         })
       }
-    })
+    }).then(()=> this.toggleShowMatched())
   }
 
   createRequest = (requested_skill) => {
@@ -99,12 +121,16 @@ class Profile extends React.Component {
     let skill_id = e.target.id;
     let requested_skill = self.state.skills[skill_id];
     let current_email = self.state.current_user && this.state.current_user.email;
+
     if (current_email) {
       firebase.firestore().collection('users').doc(current_email).get().then(function(doc) {
         if (doc.exists){
           let requesters = Object.keys(doc.data().requests);
 
           if(requesters.includes(self.state.profileEmail)){
+            self.setState({
+              matchedSkill: requested_skill,
+            })
             self.handleMatchedRequests();
             return
           }
@@ -119,12 +145,23 @@ class Profile extends React.Component {
   render() {
     return(
       <Container>
+          <Row>
+            <Col xs={6}>
+              <Toast show={this.state.showMatched} onClose={this.toggleShowMatched}>
+                <Toast.Header>
+                  <strong className="mr-auto">Message from SkillSwap</strong>
+                  <small>{this.state.matchTime && moment(this.state.matchTime.toDate()).fromNow()}</small>
+                </Toast.Header>
+                <Toast.Body>Woohoo, you just matched with {this.state.fullname} for the skill {this.state.matchedSkill}!</Toast.Body>
+              </Toast>
+            </Col>
+          </Row>
           <Row className="text-center">
                 <Image className="img-profile-pic" src={pic} roundedCircle/>
           </Row>
           <br/>
           <Jumbotron bg="secondary">
-            <h1>{this.state.name}</h1>
+            <h1>{this.state.fullname}</h1>
             <p>{this.state.bio}</p>
         </Jumbotron>
           <h2 id="yer">Skills I teach...</h2>
