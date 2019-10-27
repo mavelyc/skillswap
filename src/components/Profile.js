@@ -169,7 +169,7 @@ class Profile extends React.Component {
             {/* button for edit profile  */}
             {/* only show request swap for a profile that is not yours */}
             <ListGroup className="skills-List">
-              {this.state.skills ? this.state.skills.map((skill, index) => <ListGroup.Item class='listItem'><div><div class="skillItem"><p>{skill}</p></div><div class="skillButton">{!this.state.isSelfProfile ? <Button id={index} onClick={this.handleRequestSkill}>Request Swap</Button> : ""}</div></div></ListGroup.Item>): []}
+              {this.state.skills ? this.state.skills.map((skill, index) => <ListGroup.Item class='listItem'><div><div class="skillItem"><p>{skill}</p></div><div class="skillButton">{!this.state.isSelfProfile ? <Button id={index} onClick={this.handleRequestSkill} variant="success">Request Swap</Button> : ""}</div></div></ListGroup.Item>): []}
             </ListGroup>
         </Container>
       </Container>

@@ -15,9 +15,11 @@ class Enter extends React.Component {
         super();
         this.state = {
             current_user: null,
-            search:''
+            search:'',
+            sucSearch:[]
         };
         this.handleChange = this.handleChange.bind(this);
+        this.submit = this.submit.bind(this);
     };
 
     componentDidMount () {
@@ -52,23 +54,37 @@ class Enter extends React.Component {
         this.setState({
             search: e.target.value
         })
-        let usersRef = firebase.firestore().collection('users');
         console.log(this.state.search)
-        usersRef.where("skills", "array-contains", this.state.search).get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-            });
-        }).catch(function(error) {
-            console.log("Error getting documents: ", error);
-        });
     }
+
+    submit = e => {
+        let self = this
+        if (e.key == "Enter") {
+            let usersRef = firebase.firestore().collection('users');
+            let tmp = []
+            usersRef.where("skills", "array-contains", self.state.search).get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    tmp.push(doc.id)
+                    console.log('tmp1',tmp)
+                })
+            }).then(() => {
+                self.setState({
+                    sucSearch: tmp
+                })
+            }).catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+    }}
 
     render(){
         let requesterList = this.state.requesters && this.state.requesterSkills ? this.state.requesters.map((requester,index) => 
             <tr><td><Link to={`/profile/${requester}`}>{requester}</Link></td><td>{this.state.requesterSkills[index]}</td></tr>
         ):[]
+
+        if (this.state.search){
+            requesterList = this.state.sucSearch.map((requester,index) => <tr><td><Link to={`/profile/${requester}`}>{requester}</Link></td><td>{this.state.search}</td></tr>)
+        };
 
         let profile_id = this.state.current_user && this.state.current_user.email ? this.state.current_user.email : "";
 
@@ -104,6 +120,7 @@ class Enter extends React.Component {
                         placeholder=" Search for some skills"
                         style={{width: '80%', borderRadius: 10}}
                         onChange = {this.handleChange}
+                        onKeyPress = {this.submit}
                         value = {this.state.search}
                     />
                 </div>
