@@ -2,7 +2,7 @@ import React from 'react';
 import {
   withRouter,
 } from "react-router-dom";
-import './profile.css';
+import './Profile.css';
 import {Container, Row, Col, Image, Card, Button, Jumbotron, ListGroup} from 'react-bootstrap';
 import pic from '../images/cmav.jpg'
 import firebase from '../firebase';
@@ -23,7 +23,7 @@ class Profile extends React.Component {
     let profileEmail = this.props.match.params.id;
     let current_user = firebase.auth().currentUser;
     let currentUserEmail = current_user.email;
-    let userData = firebase.firestore().collection('users').doc(email);
+    let userData = firebase.firestore().collection('users').doc(profileEmail);
     
     let profile = userData.get().then(function(doc) {
       if (doc.exists){
@@ -31,7 +31,7 @@ class Profile extends React.Component {
         self.setState({
             name: data.name,
             bio: data.bio,
-            skills: data.skill,
+            skills: data.skills,
         })
       }
     }).catch(function(error){
@@ -43,16 +43,14 @@ class Profile extends React.Component {
                 <Image className="img-profile-pic" src={pic} roundedCircle/>
           </Row>
           <br/>
-          <Row>
           <Jumbotron bg="secondary">
             <h1>{this.state.name}</h1>
             <p>{this.state.bio}</p>
         </Jumbotron>
-          </Row>
           <h2 id="yer">Skills I teach...</h2>
         <Container>
             <ListGroup>
-                {this.state.skills ? this.skills.map(skill => <ListGroup.Item>{skill}</ListGroup.Item>): []}
+                {this.state.skills ? this.state.skills.map(skill => <ListGroup.Item class='listItem'><p>{skill}</p></ListGroup.Item>): []}
             </ListGroup>
         </Container>
       </Container>
