@@ -70,7 +70,7 @@ class Enter extends React.Component {
                     height="50" 
                     className="Profile" 
                     alt="profile"
-                /></Link */}>
+                /></Link */}
 
                 <br/>
                 <br/>
@@ -84,9 +84,7 @@ class Enter extends React.Component {
                         style={{width: "450px", borderRadius: 10}}
                     />
                 </div>
-
                 <br/>
-
                 <div>
                     <Table striped bordered variant="dark" float="center">
                         <thead>
@@ -97,14 +95,6 @@ class Enter extends React.Component {
                         </thead>
                         <tbody>
                             {test}
-                            <tr>
-                            <td>Thomas</td>
-                            <td>Python tutorial</td>
-                            </tr>
-                            <tr>
-                            <td>Pooja</td>
-                            <td>Broom sweeping</td>
-                            </tr>
                         </tbody>
                     </Table>
                 </div>
