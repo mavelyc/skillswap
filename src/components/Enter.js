@@ -6,9 +6,19 @@ import {
 import firebase from '../firebase';
 import logo from './logo2.png';
 import profile from '../profile.png';
+import './Enter.css';
 import {
-    Table
-} from 'react-bootstrap'
+    Container, 
+    Row, 
+    Col, 
+    Image, 
+    Card, 
+    Button, 
+    Jumbotron, 
+    ListGroup,
+    Toast,
+    Table,
+} from 'react-bootstrap';
 
 class Enter extends React.Component {
     constructor() {
@@ -93,56 +103,77 @@ class Enter extends React.Component {
         let profile_id = this.state.current_user && this.state.current_user.email ? this.state.current_user.email : "";
 
         return(
-            <div>
-
-                <div className="float-right">
-                    <Link to={`/profile/${profile_id}`}>
-                    <img src={profile} 
-                        height="35" 
-                        className="Profile" 
-                        alt="profile"
-                    />
-                    </Link>
-                </div>
-
-                <div className="float-left">
-                    <img src={logo}
-                        style={{width: '70%'}}
-                        className="Logo"
-                        alt="logo"
-                    />
-                </div>
-
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col> 
+                    <div >
+                        <Link to={`/profile/${profile_id}`}>
+                        <img src={profile} 
+                            height="100" 
+                            className="Profile" 
+                            alt="profile"
+                        />
+                        </Link>
+                    </div>
+                    </Col>
+                    <Col></Col>
+                </Row>
+                <Row>
+                    <Col></Col>
+                    <Col >
+                        <div >
+                            <img src={logo}
+                                style={{width: '70%'}}
+                                className="Logo"
+                                alt="logo"
+                            />
+                        </div>
+                    </Col>
+                    <Col></Col>
+                </Row>
                 <br/>
                 <br/>
                 <br/>
-
-                <div>
-                    <input
-                        type="text"
-                        name="learning"
-                        placeholder=" Search for some skills"
-                        style={{width: '80%', borderRadius: 10}}
-                        onChange = {this.handleChange}
-                        onKeyPress = {this.submit}
-                        value = {this.state.search}
-                    />
-                </div>
+                <Row>
+                    <Col xs={3}></Col>
+                    <Col xs={6}>
+                    <div>
+                        <input
+                            type="text"
+                            name="learning"
+                            placeholder=" Search for a new skill to learn today..."
+                            style={{width: '80%', borderRadius: 10}}
+                            onChange = {this.handleChange}
+                            onKeyPress = {this.submit}
+                            value = {this.state.search}
+                        />
+                    </div>
+                    </Col>
+                    <Col xs={3}></Col>
+                </Row>
                 <br/>
-                <div>
-                    <Table striped bordered variant="dark" align="center" style={{width: '80%', alignItems: 'center'}}>
-                        <thead>
-                            <tr>
-                            <th>Name</th>
-                            <th>Skills Offering</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {requesterList}
-                        </tbody>
-                    </Table>
-                </div>
-        </div>
+                <Row>
+                    <Col xs={3}></Col>
+                    <Col xs={6}>
+                    <div>
+                        {requesterList ? <h2>Skills You Might Be Interested In</h2> : <h2>Search for A New skills Today!</h2>}
+                        <Table striped bordered variant="dark" align="center" style={{width: '80%', alignItems: 'center'}}>
+                            <thead>
+                                <tr>
+                                <th>Name</th>
+                                <th>Skills Offered</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {requesterList}
+                            </tbody>
+                        </Table>
+                    </div>
+                    </Col>
+                    <Col xs={3}></Col>
+                </Row>
+            </Container>
         )
     }
 }
