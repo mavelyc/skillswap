@@ -42,7 +42,7 @@ class Login extends React.Component {
                     fullname: user.displayName,
                     email: user.email,
                     bio: '',
-                    skills: '',
+                    skills: [],
                     requests: {},
                     }).catch(err => console.log("ERROR" , err))
                 } 
