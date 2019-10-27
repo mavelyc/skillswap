@@ -10,14 +10,10 @@ import {
   Row,
   Col,
   Image,
-  Card,
-  Button,
-  Jumbotron,
-  ListGroup,
-  Nav,
 } from "react-bootstrap"
 import '../Home.css';
-import pic from '../images/cmav.jpg'
+var x = "./mlhtrust.png"
+
 
 
 class Home extends React.Component {
@@ -29,29 +25,40 @@ class Home extends React.Component {
   
   render() {
     return(
-      <div class="bg">
-      <Container>
-          <Alert variant={'success'}>
-            <h1>
-              <strong>
-                SkillSwap
-              </strong>
-                </h1>
-                
-          </Alert>
+      <div>
+      <div class="rectangle">
+        <p class="bucktee">
+        <strong>Developed by: while(inSauga)™</strong>
+        </p>
+      </div>
+          <div class="rectangle2"></div>
+          <div class="rectangle3"></div>
+          <div class="topRec">
+            <p class="troll">
+                <strong id="please">SkillSwap</strong>
+            </p>
+            <p class="theDevs">Meet The Devs</p>
+          </div>
+          <div class="rectangleDevs"></div>
+          <p class="horribleNames">
+            <h2>
+            Sponsors
+              </h2>
+              </p>
           <Container>
           <Row>
              <Col>
+             <br/><br/>
               <Image src={"https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4348697.png"}
-              height="200px" />
+              height="275px" />
              </Col>
           </Row>
           <Row>
-          <Col>
+          <Col xs={3} md={'span:2'}>
           </Col>
-          <Col xs={6}>
+          <Col xs={6} md={'span:2'}>
           <br/>
-            <body>
+            <body class="transbox">
             <h3>
             <br/>
               Become the <strong>Student</strong> and the <strong>Teacher </strong>
@@ -64,30 +71,44 @@ class Home extends React.Component {
             <br/>
             </body>
           </Col>
-          <Col></Col>
+          <Col xs={2} md={'span:2'}></Col>
+          <Col xs={1}>
+          <Image src ={require ('./mlhtrust.png')} height="175px" />
+              </Col>
+          </Row>
+          <Row>
+            <Col xs={3}></Col>
+            <Col xs={6}></Col>
+            <Col xs={2}></Col>
+            <Col xs={1}></Col>
           </Row>
           <Container>
             <Row>
-              <Col></Col>
-              <Col>
+              <Col xs={3}></Col>
+              <Col xs={3}> 
                 <Link to="/register">
                 <button type="button" class="btn btn-success btn-lg">
                   Register
                 </button>
                 </Link>
               </Col>
-              <Col>
+              <Col xs={3}>
                 <Login />
               </Col>
-              <Col></Col>
+              <Col xs={1}></Col>
+              <Col xs={1}></Col>
+              <Col xs={1}>
+              <Image src ={require ('./pleaseplease.png')} height="85px" />
+              </Col>
             </Row>          
             </Container>
       </Container>
       <Row></Row>
       <Row></Row> 
       <Row></Row>  
-  </Container>
 </div>
+
+
     )
   }
 }

@@ -1,4 +1,7 @@
-body {
+  body.transbox {
+    background-color: #ffffff;
+    opacity: 0.75;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
     padding-left: 20px;
     padding-right: 20px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -6,10 +9,13 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    outline-style: double;
-    opacity: ;
+    border-radius: 30px;
+    border-style: groove;
+    border-width: 5px;
+    border-color: #324d01;
+    margin-bottom: 20px;
   }
-  
+
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
@@ -18,33 +24,118 @@ body {
   html {
     height: 100%;
   }
-  
-  .bg {
-    /* The image used */
-    background-color: #171717;
-    /* Full height */
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-        
-    /* Preserve aspet ratio */
-    background-size: cover;
-    min-height: 100%;
+
+  p.troll{
+    color: white;
+    font-size: 40px;
+    font-family: "Helvetica Neue";
+  }
+
+  strong.please{
+      color: white;
+  }
+
+  h5, h3 {
+    color: #324d01;
+    text-align: center;
+
+  }
+
+ 
+
+  .topRec {
+    height: 63px;
     min-width: 100%;
-    background-repeat: no-repeat;
-    overflow: hidden;
+    background-color:green;
+    position: fixed;
+    top: 15px;
+    left: 0;
+    border-style: solid;
+    border-width: 5px;
+    border-color: green;
+    
+}
+  .rectangle {
+    height: 15px;
+    min-width: 100%;
+    background-color:white;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .rectangle2 {
+    height: 100%;
+    min-width: 100%;
+    background-image: url('https://stmed.net/sites/default/files/dark-grey-wallpapers-25192-2374233.jpg');
+    position: fixed;
+    top: 78px;
+    left: 200px;
   }
 
-  h3 {
+  .rectangle3 {
+    height: 100%;
+    min-width: 200px;
+    background-color: white;
+    position: fixed;
+    top: 73px;
+    left: 0px;
+    border-style: solid;
+    border-width: 5px;;
+    border-right-color: black;
+    border-top-color: green;
+  }
+
+  p.theDevs {
+    color:green;
+    position: fixed;
+    top: 75px;
+    left: 7px;
+    font-size: 23px;
+    font-family: menlo;
+  }
+
+p.bucktee {
+    position: fixed;
+    top: -3px;
+    right: 5px;
     color: #324d01;
-    text-align: center;
-  }
+    font-size: 13px;
+    font-family: "Helvetica Neue";
+}
 
-  h5 {
-    color: #324d01;
-    text-align: center;
-  }
+p.horribleNames {
+    position: fixed;
+    bottom: -20px;
+    right: 10px;
+    color: green;
+    font-size: 23px;
+    font-family: "Helvetica Neue";
+    background-color: white;
+    min-height: 450px;
+    width: 250px;
+    border-style: solid;
+    border-color: green;
+    border-top-width: 27px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-left-width: 10px;
+    border-right-width: 10px;
+}
 
-  div {
-      padding-top: 10px;
-  }
+.logoS {
+position: fixed;
+bottom: 5px;
+right: 5px;
+height: 100px;
+min-width: 220px;
+position: fixed;
+}
+
+.rectangleDevs {
+position: fixed;
+top: 105px;
+min-height: 100%;
+min-width: 185px;
+left: 5px;
+background-color:red;
+}

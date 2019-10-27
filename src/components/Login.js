@@ -4,9 +4,6 @@ import {
 } from "react-router-dom";
 import '../App.css';
 import firebase from '../firebase';
-import {
-Spinner,
-  } from "react-bootstrap"
 
 class Login extends React.Component {
     constructor() {
