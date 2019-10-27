@@ -15,6 +15,7 @@ class Enter extends React.Component {
         super();
         this.state = {
             current_user: null,
+            search:''
         };
     };
 
@@ -45,6 +46,14 @@ class Enter extends React.Component {
             current_user: current_user,
         })
     }
+
+    handleChange = (e) => {
+        this.setState({
+            search: e.target.value
+        })
+        console.log(this.state.search)
+    }
+
     render(){
         console.log('this.state');
         console.log(this.state);
@@ -82,6 +91,8 @@ class Enter extends React.Component {
                         name="learning"
                         placeholder=" Search for some skills"
                         style={{width: "450px", borderRadius: 10}}
+                        onChange = {this.handleChange}
+                        value = {this.state.search}
                     />
                 </div>
                 <br/>
