@@ -2,44 +2,57 @@ import React from 'react';
 import {
   withRouter,
 } from "react-router-dom";
-import '../App.css';
+import './Profile.css';
 import {Container, Row, Col, Image, Card, Button, Jumbotron, ListGroup} from 'react-bootstrap';
 import pic from '../images/cmav.jpg'
-
+import firebase from '../firebase';
 
 class Profile extends React.Component {
     
   constructor() {
       super();
-      this.state={}
+      this.state={
+          name: '',
+          bio: '',
+          skills: [],
+      }
   }
   
   render() {
+    let self = this;
+    let profileEmail = this.props.match.params.id;
+    let current_user = firebase.auth().currentUser;
+    let currentUserEmail = current_user.email;
+    let userData = firebase.firestore().collection('users').doc(profileEmail);
+    
+    let profile = userData.get().then(function(doc) {
+      if (doc.exists){
+        let data = doc.data();
+        self.setState({
+            name: data.name,
+            bio: data.bio,
+            skills: data.skills,
+        })
+      }
+    }).catch(function(error){
+      console.log('fetch error', error)
+    })
     return(
       <Container>
           <Row className="text-center">
                 <Image className="img-profile-pic" src={pic} roundedCircle/>
           </Row>
           <br/>
-          <Row>
           <Jumbotron bg="secondary">
-            <h1>Name</h1>
-            <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
-            </p>
-            </Jumbotron>
-          </Row>
+            <h1>{this.state.name}</h1>
+            <p>{this.state.bio}</p>
+        </Jumbotron>
           <h2 id="yer">Skills I teach...</h2>
-          <Container>
-          <ListGroup>
-            <ListGroup.Item text-color="black">Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+        <Container>
+            <ListGroup>
+                {this.state.skills ? this.state.skills.map(skill => <ListGroup.Item class='listItem'><p>{skill}</p></ListGroup.Item>): []}
             </ListGroup>
-            </Container>
+        </Container>
       </Container>
     )
   }

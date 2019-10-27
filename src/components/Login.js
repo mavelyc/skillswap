@@ -36,15 +36,25 @@ class Login extends React.Component {
                 isLoggedIn: true,
                 email: user.email,
             });
-            history.push('/enter')
-        }).catch(function(error) {
+
+
+            firebase.firestore().collection('users').doc(self.state.email).get().then(function(doc) {
+                if (!doc.exists){
+                    console.log('does not exist, creating user doc', doc)
+                    firebase.firestore().collection('users').doc(self.state.email).set({
+                    name: user.displayName,
+                    email: user.email,
+                    bio: '',
+                    skills: ''
+                    }).catch(err => console.log("ERROR" , err))
+                } 
+                }).catch(function(error){
+                console.log('fetch error', error)
+                }).then(() => {
+                history.push('/enter')
+                }).catch(function(error) { console.log(error)});
         // Handle Errors here.
-            self.setState({
-                errorCode: error.code,
-                errorrMessage: error.message,
-                email:  error.email,
-                credential: error.credential,
-            });
+            
         });
     }
 
