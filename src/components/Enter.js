@@ -4,7 +4,7 @@ import {
     Link,
   } from "react-router-dom";
 import firebase from '../firebase';
-import logo from '../logo.svg';
+import logo from '../logo.png';
 import profile from '../profile.png';
 import {
     Table
