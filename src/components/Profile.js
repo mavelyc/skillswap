@@ -23,29 +23,18 @@ class Profile extends React.Component {
 
   componentDidMount() {
     // determine if profile is your own profile
+    let self = this;
     let profileEmail = this.props.match.params.id;
     let current_user = firebase.auth().currentUser;
-    let isSelfProfile = profileEmail == current_user.email;
+    let isSelfProfile = current_user && profileEmail == current_user.email;
 
     this.setState({
       isSelfProfile: isSelfProfile,
       current_user: current_user,
       profileEmail: profileEmail,
     })
-  }
 
-  handleRequestSkill = (e) => {
-    let skill_id = e.target.id;
-    let requested_skill = this.state.skills[skill_id];
-    console.log('requested_skill', requested_skill)
-  }
-  
-  render() {
-    let self = this;
-    console.log('pemail',self.state.profileEmail);
-    let userData = firebase.firestore().collection('users').doc(self.state.profileEmail);
-    
-    let profile = userData.get().then(function(doc) {
+    firebase.firestore().collection('users').doc(profileEmail).set(function(doc) {
       if (doc.exists){
         let data = doc.data();
         self.setState({
@@ -57,6 +46,59 @@ class Profile extends React.Component {
     }).catch(function(error){
       console.log('fetch error', error)
     })
+  }
+
+  handleMatchedRequests = () => {
+    let self = this;
+    // create match object in current user with profile email
+    // create match object in profile email with current email
+    let currentUser = firebase.firestore().collection('users').doc(self.state.profileEmail).get();
+    let currentProfile = firebase.firestore().collection('users').doc(self.state.profileEmail).get();
+    return
+  }
+
+  createRequest = (requested_skill) => {
+    let self =this;
+    //add current user to profile email with skill in array
+    let currentProfile = firebase.firestore().collection('users').doc(self.state.profileEmail).get();
+    
+    currentProfile.then(function(doc) {
+      if (doc.exists){
+        console.log('doc',doc);
+        let newRequests = doc.requests;
+        newRequests[self.current_user.email] = requested_skill;
+        currentProfile.update({
+          requests: newRequests
+        })
+      }
+    }).catch(function(error){
+      console.log('fetch error', error)
+    })
+  }
+
+  handleRequestSkill = (e) => {
+    let self = this;
+    let skill_id = e.target.id;
+    let requested_skill = this.state.skills[skill_id];
+    let current_email = this.state.current_user && this.state.current_user.email;
+    if (current_email) {
+      firebase.firestore().collection('users').doc(current_email).get().then(function(doc) {
+        if (doc.exists){
+          let requesters = Object.keys(doc.data().requests);
+
+          if(requesters.includes(self.state.profileEmail)){
+            this.handleMatchedRequests();
+            return
+          }
+          this.createRequest(requested_skill);
+        }
+      }).catch(function(error){
+        console.log('fetch error', error)
+      })
+    }
+  }
+  
+  render() {
     return(
       <Container>
           <Row className="text-center">
@@ -72,7 +114,7 @@ class Profile extends React.Component {
             {/* button for edit profile  */}
             {/* only show request swap for a profile that is not yours */}
             <ListGroup className="skills-List">
-                {this.state.skills ? this.state.skills.map((skill, index) => <ListGroup.Item class='listItem'><div><div class="skillItem"><p>{skill}</p></div><div class="skillButton">{!this.state.isSelfProfile ? <Button id={index} onClick={this.handleRequestSkill}>Request Swap</Button> : ""}</div></div></ListGroup.Item>): []}
+              {this.state.skills ? this.state.skills.map((skill, index) => <ListGroup.Item class='listItem'><div><div class="skillItem"><p>{skill}</p></div><div class="skillButton">{!this.state.isSelfProfile ? <Button id={index} onClick={this.handleRequestSkill}>Request Swap</Button> : ""}</div></div></ListGroup.Item>): []}
             </ListGroup>
         </Container>
       </Container>
