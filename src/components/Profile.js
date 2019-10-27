@@ -34,7 +34,7 @@ class Profile extends React.Component {
       profileEmail: profileEmail,
     })
 
-    firebase.firestore().collection('users').doc(profileEmail).set(function(doc) {
+    firebase.firestore().collection('users').doc(profileEmail).get().then(function(doc) {
       if (doc.exists){
         let data = doc.data();
         self.setState({
@@ -50,21 +50,39 @@ class Profile extends React.Component {
 
   handleMatchedRequests = () => {
     let self = this;
-    // create match object in current user with profile email
-    // create match object in profile email with current email
-    let currentUser = firebase.firestore().collection('users').doc(self.state.profileEmail).get();
-    let currentProfile = firebase.firestore().collection('users').doc(self.state.profileEmail).get();
-    return
+    let profileEmail = self.state.profileEmail;
+    let matchTime = firebase.firestore.Timestamp.fromDate(new Date());
+
+    let updateRequesterParams = {};
+    updateRequesterParams[`${self.state.current_user.email}`] = matchTime;
+
+    let updateUserParams = {};
+    updateUserParams[`${profileEmail}`] = matchTime;
+
+    let currentUser = firebase.firestore().collection('users').doc(self.state.current_user.email);
+    let currentProfile = firebase.firestore().collection('users').doc(self.state.profileEmail);
+    currentProfile.get().then(function(doc) { 
+      if(doc.exists){
+        currentProfile.update({
+          matches: updateRequesterParams,
+        })
+      }
+    })
+    currentUser.get().then(function(doc) { 
+      if(doc.exists){
+        currentUser.update({
+          matches: updateUserParams,
+        })
+      }
+    })
   }
 
   createRequest = (requested_skill) => {
     let self =this;
-    //add current user to profile email with skill in array
-    let currentProfile = firebase.firestore().collection('users').doc(self.state.profileEmail).get();
+    let currentProfile = firebase.firestore().collection('users').doc(self.state.profileEmail);
     
-    currentProfile.then(function(doc) {
+    currentProfile.get().then(function(doc) {
       if (doc.exists){
-        console.log('doc',doc);
         let newRequests = doc.requests;
         newRequests[self.current_user.email] = requested_skill;
         currentProfile.update({
@@ -79,18 +97,18 @@ class Profile extends React.Component {
   handleRequestSkill = (e) => {
     let self = this;
     let skill_id = e.target.id;
-    let requested_skill = this.state.skills[skill_id];
-    let current_email = this.state.current_user && this.state.current_user.email;
+    let requested_skill = self.state.skills[skill_id];
+    let current_email = self.state.current_user && this.state.current_user.email;
     if (current_email) {
       firebase.firestore().collection('users').doc(current_email).get().then(function(doc) {
         if (doc.exists){
           let requesters = Object.keys(doc.data().requests);
 
           if(requesters.includes(self.state.profileEmail)){
-            this.handleMatchedRequests();
+            self.handleMatchedRequests();
             return
           }
-          this.createRequest(requested_skill);
+          self.createRequest(requested_skill);
         }
       }).catch(function(error){
         console.log('fetch error', error)
