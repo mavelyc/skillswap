@@ -40,7 +40,9 @@ class Login extends React.Component {
                     console.log('does not exist, creating user doc', doc)
                     firebase.firestore().collection('users').doc(self.state.email).set({
                     name: user.displayName,
-                    email: user.email
+                    email: user.email,
+                    bio: '',
+                    skills: ''
                     }).catch(err => console.log("ERROR" , err))
                 } 
                 }).catch(function(error){

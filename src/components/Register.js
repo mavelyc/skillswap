@@ -49,7 +49,9 @@ class Register extends React.Component {
 
         firebase.firestore().collection('users').doc(this.state.email).set({
             fullname: this.state.fullname,
-            email: this.state.email
+            email: this.state.email,
+            bio: '',
+            skills: ''
         }).then(() => {
             history.push('/enter')
         }).catch(e => console.log(e)); 

@@ -34,7 +34,7 @@ class Root extends React.Component {
                     <Route path="/login" render={()=> <Login a={this.state}/>} />} />
                     <Route path="/register" render={()=> <Register state={this.state}/>} />} />
                     <Route path="/enter" render={()=> <Enter state={this.state}/>} />} />
-                    <Route path="/profile" render={()=> <Profile state={this.state}/>} />} />
+                    <Route path="/profile/:id" render={()=> <Profile state={this.state}/>} />} />
                     <Route path="/" render={()=> <Home state={this.state}/>} />} />
                 </Switch>
             </Router>

@@ -24,7 +24,7 @@ const Enter = ({history}) => {
                 alt="settings"
             />
 
-            <Link to="/profile"><img src={profile} 
+            <Link to={`/profile/${current_user.email}`}><img src={profile} 
                 height="50" 
                 className="Profile" 
                 alt="profile"
