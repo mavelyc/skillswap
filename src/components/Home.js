@@ -31,33 +31,27 @@ class Home extends React.Component {
         <strong>Developed by: while(inSauga)™</strong>
         </p>
       </div>
-          <div class="rectangle2"></div>
-          <div class="rectangle3"></div>
           <div class="topRec">
             <p class="troll">
                 <strong id="please">SkillSwap</strong>
             </p>
-            <p class="theDevs">Meet The Devs</p>
           </div>
-          <div class="rectangleDevs"></div>
-          <p class="horribleNames">
-            <h2>
-            Sponsors
-              </h2>
-              </p>
           <Container>
+            <Row>
+              <Col></Col>
+            </Row>
           <Row>
-             <Col>
-             <br/><br/>
-              <Image src={"https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4348697.png"}
-              height="275px" />
+            <Col xs={3}></Col>
+             <Col xs={6}>
+              <Image src = {require  ("./logo.png")}
+              fluid />
              </Col>
+             <Col xs={3}></Col>
           </Row>
           <Row>
-          <Col xs={3} md={'span:2'}>
+          <Col xs={2} md={'span:2'}>
           </Col>
-          <Col xs={6} md={'span:2'}>
-          <br/>
+          <Col xs={8} md={'span:2'}>
             <body class="transbox">
             <h3>
             <br/>
@@ -66,15 +60,12 @@ class Home extends React.Component {
             <h5>
               Find someone help you discover your passion, 
               and make amazing connections along the way!
-              Did we mention it's absolutely free? jk u broke boi get ya weight up
+              Did we mention it's absolutely <strong>free?</strong>
             </h5>
             <br/>
             </body>
           </Col>
           <Col xs={2} md={'span:2'}></Col>
-          <Col xs={1}>
-          <Image src ={require ('./mlhtrust.png')} height="175px" />
-              </Col>
           </Row>
           <Row>
             <Col xs={3}></Col>
@@ -84,23 +75,20 @@ class Home extends React.Component {
           </Row>
           <Container>
             <Row>
-              <Col xs={3}></Col>
-              <Col xs={3}> 
+              <Col xs={2}></Col>
+              <Col xs={4}> 
                 <Link to="/register">
                 <button type="button" class="btn btn-success btn-lg">
                   Register
                 </button>
                 </Link>
               </Col>
-              <Col xs={3}>
+              <Col xs={4}>
                 <Login />
               </Col>
-              <Col xs={1}></Col>
-              <Col xs={1}></Col>
-              <Col xs={1}>
-              <Image src ={require ('./pleaseplease.png')} height="85px" />
-              </Col>
-            </Row>          
+              <Col xs={2}></Col>
+            </Row>     
+            <br/>     
             </Container>
       </Container>
       <Row></Row>
