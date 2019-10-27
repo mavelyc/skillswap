@@ -36,17 +36,17 @@ const Enter = ({history}) => {
 
             <br/>
             <br/>
+            <br/>
 
             <div>
                 <input
                     type="text"
                     name="learning"
-                    placeholder="Search for some skills"
+                    placeholder=" Search for some skills"
+                    style={{width: "450px", borderRadius: 10}}
                 />
             </div>
 
-            <br/>
-            <br/>
             <br/>
 
             <div>
