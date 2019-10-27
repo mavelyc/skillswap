@@ -81,9 +81,7 @@ class Enter extends React.Component {
                         style={{width: "450px", borderRadius: 10}}
                     />
                 </div>
-
                 <br/>
-
                 <div>
                     <Table striped bordered variant="dark" float="center">
                         <thead>

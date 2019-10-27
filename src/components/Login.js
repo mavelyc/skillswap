@@ -35,17 +35,18 @@ class Login extends React.Component {
                 user: user,
                 isLoggedIn: true,
                 email: user.email,
-                requests: [],
+                requests: {},
             });
 
             firebase.firestore().collection('users').doc(self.state.email).get().then(function(doc) {
                 if (!doc.exists){
                     console.log('does not exist, creating user doc', doc)
                     firebase.firestore().collection('users').doc(self.state.email).set({
-                    name: user.displayName,
+                    fullname: user.displayName,
                     email: user.email,
                     bio: '',
-                    skills: ''
+                    skills: '',
+                    requests: {},
                     }).catch(err => console.log("ERROR" , err))
                 } 
                 }).catch(function(error){

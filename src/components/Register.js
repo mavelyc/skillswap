@@ -52,7 +52,7 @@ class Register extends React.Component {
             email: this.state.email,
             bio: '',
             skills: '',
-            requests: [],
+            requests: {},
         }).then(() => {
             history.push('/enter')
         }).catch(e => console.log(e)); 
