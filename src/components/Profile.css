@@ -33,4 +33,14 @@
     color: black;
   }
 
-  
+  .skills-List {
+    padding: 5px;
+  }
+
+  .skillItem {
+    float: left;
+  }
+
+  .skillButton {
+    float: right;
+  }
