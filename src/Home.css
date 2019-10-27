@@ -120,3 +120,12 @@ background-color:red;
 .container {
     align-items:flex-end 
 }
+
+.filler {
+    height: 73px;
+    width: 100%;
+    background-color: transparent;
+    position: fixed;
+    top: 0px;
+    }
+

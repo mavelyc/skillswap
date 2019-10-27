@@ -26,11 +26,6 @@ class Home extends React.Component {
   render() {
     return(
       <div>
-      <div class="rectangle">
-        <p class="bucktee">
-        <strong>Developed by: while(inSauga)™</strong>
-        </p>
-      </div>
           <div class="topRec">
             <p class="troll">
                 <strong id="please">SkillSwap</strong>
@@ -38,7 +33,10 @@ class Home extends React.Component {
           </div>
           <Container>
             <Row>
-              <Col></Col>
+              <Col>
+              <Image src = "https://www.transparenttextures.com/patterns/asfalt-light.png" 
+              height= "75px"/>
+                </Col>
             </Row>
           <Row>
             <Col xs={3}></Col>
