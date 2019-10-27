@@ -1,7 +1,7 @@
 .App {
-  text-align: center;
-}
-
+    text-align: center;
+  }
+  
 .App-logo {
   height: 40vmin;
 }
@@ -20,11 +20,17 @@
 .App-link {
   color: #09d3ac;
 }
+  
+  .img-profile-pic {
+    max-width: 250px;
+    max-height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+  }
 
-.img-profile-pic {
-  max-width: 250px;
-  max-height: 250px;
-  margin-left: auto;
-  margin-right: auto;
-  align-content: center;
-}
+  p, h1 {
+    color: black;
+  }
+
+  

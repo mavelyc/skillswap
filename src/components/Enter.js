@@ -26,13 +26,11 @@ const Enter = ({history}) => {
                 />
             </div>
 
-            <div className="float-right">
-                <img src={profile} 
-                    height="50" 
-                    className="Profile" 
-                    alt="profile"
-                />
-            </div>
+            <Link to={`/profile/${current_user.email}`}><img src={profile} 
+                height="50" 
+                className="Profile" 
+                alt="profile"
+            /></Link>
 
             <br/>
             <br/>
