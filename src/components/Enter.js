@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     withRouter,
+    Link,
   } from "react-router-dom";
 import firebase from '../firebase';
 import settings from '../settings.png';
@@ -25,6 +26,7 @@ const Enter = ({history}) => {
                 />
             </div>
 
+<<<<<<< HEAD
             <div className="float-right">
                 <img src={profile} 
                     height="50" 
@@ -32,10 +34,18 @@ const Enter = ({history}) => {
                     alt="profile"
                 />
             </div>
+=======
+            <Link to="/profile"><img src={profile} 
+                height="50" 
+                className="Profile" 
+                alt="profile"
+            /></Link>
+>>>>>>> 07d5d612a5afadbe0b30c00168425d938be9d1ea
 
             <br/>
             <br/>
 
+<<<<<<< HEAD
             <div>
                 <input
                     type="text"
@@ -72,6 +82,31 @@ const Enter = ({history}) => {
                     </tbody>
                 </Table>
             </div>
+=======
+            {/* map from database query to get matched users */}
+            <Table striped bordered variant="dark" float="center">
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Skills Offering</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>Jacob</td>
+                    <td>Guitar Lessons</td>
+                    </tr>
+                    <tr>
+                    <td>Thomas</td>
+                    <td>Python tutorial</td>
+                    </tr>
+                    <tr>
+                    <td>Pooja</td>
+                    <td>Broom sweeping</td>
+                    </tr>
+                </tbody>
+            </Table>
+>>>>>>> 07d5d612a5afadbe0b30c00168425d938be9d1ea
       </div>
     )
 }

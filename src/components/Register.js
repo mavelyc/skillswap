@@ -14,26 +14,18 @@ class Register extends React.Component {
         super();
         this.state = {
             email: '',
-            firstname: '',
-            lastname: '',
+            fullname: '',
             password: ''
         };
         this.changeEmail = this.changeEmail.bind(this);
-        this.changeFirstName = this.changeFirstName.bind(this);
-        this.changeLastName = this.changeLastName.bind(this);
+        this.changeFullName = this.changeFullName.bind(this);
         this.changePassword = this.changePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    changeFirstName = (e) => {
+    changeFullName = (e) => {
         this.setState({
-            firstname: e.target.value
-        })
-    }
-
-    changeLastName = (e) => {
-        this.setState({
-            lastname: e.target.value
+            fullname: e.target.value
         })
     }
 
@@ -56,8 +48,7 @@ class Register extends React.Component {
         });
 
         firebase.firestore().collection('users').doc(this.state.email).set({
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
+            fullname: this.state.fullname,
             email: this.state.email
         }).then(() => {
             history.push('/enter')
@@ -74,13 +65,9 @@ class Register extends React.Component {
                     <Col>
                         {/*// form to create new user*/}
                         <Form>
-                            <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.firstname} onChange={this.changeFirstName}>
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control type="firstname" placeholder="Huncho" />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.lastname} onChange={this.changeLastName}>
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control type="firstname" placeholder="Quavo" />
+                            <Form.Group size="lg" controlId="exampleForm.ControlInput1" value={this.state.fullname} onChange={this.changeFullName}>
+                            <Form.Label>Full Name</Form.Label>
+                            <Form.Control type="fullname" placeholder="Quavo Huncho" />
                         </Form.Group>
                         <Form.Group size="lg" controlId="formBasicPassword" value={this.state.email} onChange={this.changeEmail}>
                             <Form.Label>Email address</Form.Label>
