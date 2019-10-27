@@ -18,11 +18,13 @@ const Enter = ({history}) => {
 
     return(
         <div>
-            <img src={settings} 
-                height="50" 
-                className="Settings" 
-                alt="settings"
-            />
+            <div className="float-left">
+                <img src={settings} 
+                    height="50" 
+                    className="Settings" 
+                    alt="settings"
+                />
+            </div>
 
             <Link to={`/profile/${current_user.email}`}><img src={profile} 
                 height="50" 
@@ -30,36 +32,45 @@ const Enter = ({history}) => {
                 alt="profile"
             /></Link>
 
-            <input
-                type="text"
-                name="learning"
-                placeholder="Search for some skills"
-                className="align-bottom"
-            />
+            <br/>
+            <br/>
 
-            {/* map from database query to get matched users */}
-            <Table striped bordered variant="dark" float="center">
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Skills Offering</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>Jacob</td>
-                    <td>Guitar Lessons</td>
-                    </tr>
-                    <tr>
-                    <td>Thomas</td>
-                    <td>Python tutorial</td>
-                    </tr>
-                    <tr>
-                    <td>Pooja</td>
-                    <td>Broom sweeping</td>
-                    </tr>
-                </tbody>
-            </Table>
+            <div>
+                <input
+                    type="text"
+                    name="learning"
+                    placeholder="Search for some skills"
+                />
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <div>
+                <Table striped bordered variant="dark" float="center">
+                    <thead>
+                        <tr>
+                        <th>Name</th>
+                        <th>Skills Offering</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>Jacob</td>
+                        <td>Guitar Lessons</td>
+                        </tr>
+                        <tr>
+                        <td>Thomas</td>
+                        <td>Python tutorial</td>
+                        </tr>
+                        <tr>
+                        <td>Pooja</td>
+                        <td>Broom sweeping</td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </div>
       </div>
     )
 }
