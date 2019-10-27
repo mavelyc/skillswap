@@ -41,11 +41,9 @@
 
   }
 
- 
-
   .topRec {
     height: 63px;
-    min-width: 100%;
+    width: 100%;
     background-color:green;
     position: fixed;
     top: 15px;
@@ -53,51 +51,30 @@
     border-style: solid;
     border-width: 5px;
     border-color: green;
-    
 }
-  .rectangle {
-    height: 15px;
-    min-width: 100%;
-    background-color:white;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
+
   .rectangle2 {
     height: 100%;
     min-width: 100%;
     background-image: url('https://stmed.net/sites/default/files/dark-grey-wallpapers-25192-2374233.jpg');
     position: fixed;
     top: 78px;
-    left: 200px;
-  }
-
-  .rectangle3 {
-    height: 100%;
-    min-width: 200px;
-    background-color: white;
-    position: fixed;
-    top: 73px;
     left: 0px;
-    border-style: solid;
-    border-width: 5px;;
-    border-right-color: black;
-    border-top-color: green;
   }
 
-  p.theDevs {
-    color:green;
-    position: fixed;
-    top: 75px;
-    left: 7px;
-    font-size: 23px;
-    font-family: menlo;
+  .rectangle{
+      height: 15px;
+      width: 100%;
+      background-color: white;
+      position: fixed;
+      top: 0px;
+      left: 0px;
   }
 
 p.bucktee {
     position: fixed;
     top: -3px;
-    right: 5px;
+    right: 1%;
     color: #324d01;
     font-size: 13px;
     font-family: "Helvetica Neue";
@@ -111,7 +88,7 @@ p.horribleNames {
     font-size: 23px;
     font-family: "Helvetica Neue";
     background-color: white;
-    min-height: 450px;
+    height: 450px;
     width: 250px;
     border-style: solid;
     border-color: green;
@@ -139,3 +116,16 @@ min-width: 185px;
 left: 5px;
 background-color:red;
 }
+
+.container {
+    align-items:flex-end 
+}
+
+.filler {
+    height: 73px;
+    width: 100%;
+    background-color: transparent;
+    position: fixed;
+    top: 0px;
+    }
+

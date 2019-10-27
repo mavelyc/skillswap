@@ -8,6 +8,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import logo from '../logo.svg'
+import {
+    Image,
+  } from "react-bootstrap"
 
 class Register extends React.Component {
     constructor() {
@@ -51,7 +54,7 @@ class Register extends React.Component {
             fullname: this.state.fullname,
             email: this.state.email,
             bio: '',
-            skills: '',
+            skills: [],
             requests: {},
         }).then(() => {
             history.push('/enter')
@@ -63,7 +66,7 @@ class Register extends React.Component {
             <Container>
                 <Row>
                     <Col>
-                        <img src={logo} className="App-logo" alt="logo" />
+                        <Image src = {require  ("./logo2.png")} fluid />
                     </Col>
                     <Col>
                         {/*// form to create new user*/}
